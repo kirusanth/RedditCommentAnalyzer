@@ -1,1 +1,1 @@
-# EECS4415-BigDataA nalyticsProject
+# EECS4415 : BigData Analytics Project
