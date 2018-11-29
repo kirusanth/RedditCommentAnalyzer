@@ -10,3 +10,27 @@
 
 6. If you see the file rows in the terminal means you are ready to go
 
+
+
+---------Working with Git ------------------
+
+1. **********store your file that you have in localdirectory into a backupfolder since when you clone the git remote repository, you might lose the file  ( IMPORTANt MUST DO)******
+2. git clone https://github.com/kirusanth/EECS4415-BigDataProject.git
+2. cd EECS4415-BigDataProject
+3. git fetch
+4. git checkout <yourbranch name>  ------> task-daniel, task-kristin,task-kirusanth, task-luke, 
+5. put the files you work in that directory 
+5. git add .
+6. git commit -m "Type your message for the commit"
+7. git push origin <yourbranch name>
+8. go to the git hub and to your branch, then click on create new pull request button ---> this will point to master and create request to update changes into master branch which i can add after reviewing with you guys
+
+
+
+if you want to check whether the file is added or not:
+you can use following command:
+
+git status
+
+
+
