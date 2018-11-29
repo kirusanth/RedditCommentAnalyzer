@@ -23,7 +23,22 @@
 5. git add .
 6. git commit -m "Type your message for the commit"
 7. git push origin <yourbranch name>
-8. go to the git hub and to your branch, then click on create new pull request button ---> this will point to master and create request to update changes into master branch which i can add after reviewing with you guys
+8. YOU CAN SEE THE FILES IN YOUR BRANCH IN GITHUB.com 
+9. click on the Pull request on the navbar
+10. Then click on create new pull request and set the base:master and compare: <yourbranch name> , it will compare master with your branch so you can see the difference
+11. Click on create pull request
+
+--if you want to add more files or you update the content and now you want to add it your branch---
+Then you use following commands since you already checkout the branch:
+1.git add .
+2.git commit -m "yourmessage"
+3.git push origin <yourbranchname>
+
+
+
+***DO NOT CHECKOUT MASTER branch , please work on your branch then create pull requests on github , so i cann add the changes to master*********** 
+
+
 
 
 
@@ -31,6 +46,8 @@ if you want to check whether the file is added or not:
 you can use following command:
 
 git status
+
+
 
 
 
