@@ -17,8 +17,8 @@
 1. **********store your file that you have in localdirectory into a backupfolder since when you clone the git remote repository, you might lose the file  ( IMPORTANt MUST DO)******
 2. git clone https://github.com/kirusanth/EECS4415-BigDataProject.git
 2. cd EECS4415-BigDataProject
-3. git fetch
-4. git checkout <yourbranch name>  ------> task-daniel, task-kristin,task-kirusanth, task-luke, 
+3. git fetch *IMPORTANT ONLY ONE TIME to get all the folders in master* (ONLY FIRST TIME - This command copy all the files into your directory deleting the files that is not in the branch) / if you want to fetch from branch, switch to branch then fetch ( do step 4 before step 3)
+4. git checkout <yourbranch name>  ------> task-daniel, task-kristin,task-kirusanth, task-luke
 5. put the files you work in that directory 
 5. git add .
 6. git commit -m "Type your message for the commit"
