@@ -18,7 +18,7 @@ def splitter (line):
 	neg[splited_line[0]] = float(splited_line[2])
 	neu[splited_line[0]] = float(splited_line[3])
 	return (pos,neg,neu)
-
+# This will sort the dictory by value
 def sortedkeysandvalues(dictionary):
 	dictionary = sorted(dictionary.items(),key=lambda kv: kv[1])
 	keys=list()
@@ -37,6 +37,8 @@ for episode_nr in range(len(list_of_inputs)):
 
 	with open(os.path.join(inputpath,list_of_inputs[episode_nr]), "r") as file:
 		data = file.readlines()
+
+		#keep pairs of positive,negative, and neutral in a dictionary
 		positive = dict()
 		negative = dict()
 		neutral = dict()
@@ -45,16 +47,13 @@ for episode_nr in range(len(list_of_inputs)):
 			positive.update(pos)
 			negative.update(neg)
 			neutral.update(neu)
-
+        # sort the positive, negative and neutral dictionary by the values 
 		poskeys,posvalues = sortedkeysandvalues(positive)
 		negkeys,negvalues = sortedkeysandvalues(negative)
 		neukeys,negvalues = sortedkeysandvalues(neutral)
-
-	
-
-
-
+		# Define figure size
 		plot.figure(figsize=(15.0, 5.0))
+		#plot positive
 		plot.subplot(1, 3, 1)
 		ypos = np.arange(len(posvalues))
 		plot.bar(ypos, posvalues, color=sns.color_palette("husl",20), align = 'center', alpha = 0.7)
@@ -63,7 +62,7 @@ for episode_nr in range(len(list_of_inputs)):
 		plot.ylabel("Average Positive Scores")
 		plot.xlabel("Characters")
 		plot.title("Characters Vs Average Positive Scores")
-	
+		#plot negative
 		plot.subplot(1, 3, 2)
 		ypos = np.arange(len(negvalues))
 		plot.bar(ypos, negvalues, color=sns.color_palette("husl",20), align = 'center', alpha = 0.7)
@@ -72,7 +71,7 @@ for episode_nr in range(len(list_of_inputs)):
 		plot.ylabel("Average Negative Scores")
 		plot.xlabel("Characters")
 		plot.title("Characters Vs Average Negative Scores")
-	
+		#plot neutral
 		plot.subplot(1, 3, 3)
 		ypos = np.arange(len(negvalues))
 		plot.bar(ypos, negvalues, color=sns.color_palette("husl",20), align = 'center', alpha = 0.7)
@@ -81,7 +80,7 @@ for episode_nr in range(len(list_of_inputs)):
 		plot.ylabel("Average Neutral Scores")
 		plot.xlabel("Characters")
 		plot.title("Characters Vs Average Neutral Scores")
-
+		#save the plot in png format
 		plot.savefig(os.path.join(outputpath,list_of_outputs[episode_nr]))
-		episode_nr += 1
+		episode_nr += 1 # move to the next episode file
 
