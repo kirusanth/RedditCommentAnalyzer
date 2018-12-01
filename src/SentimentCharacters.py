@@ -29,6 +29,7 @@ episode5 = "../GameofThrones/episode5.csv"
 episode6 = "../GameofThrones/episode6.csv" 
 episode7 = "../GameofThrones/episode7full.csv"
 
+
 # output path
 savepath ="../output/Text/SentimentCharacters/"
 
@@ -36,7 +37,9 @@ savepath ="../output/Text/SentimentCharacters/"
 list_of_inputs = [episode1, episode2, episode3, episode4, episode5, episode6, episode7]
 
 # list of outputfiles
-list_of_outputs = ["character_sentiment_E1.txt", "character_sentiment_E2.txt", "character_sentiment_E3.txt", "character_sentiment_E4.txt", "character_sentiment_E5.txt", "character_sentiment_E6.txt", "character_sentiment_E7.txt"]
+list_of_outputs = ["character_sentiment_E1", "character_sentiment_E2", "character_sentiment_E3", "character_sentiment_E4", "character_sentiment_E5", "character_sentiment_E6", "character_sentiment_E7"]
+# output file format
+outputformat = ".txt" #textfile
 
 #character can be identified without aliases references
 characters = ["cersei","theon", "bran", "hound", "melisandre", "bronn", "tormund","gilly","missandei"]
@@ -140,7 +143,7 @@ for i in range(len(list_of_inputs)):
 
 	outputofepisode =list()
 	#store the ouput results in the text file
-	with open (os.path.join(savepath,list_of_outputs[i]), "w+") as file:
+	with open (os.path.join(savepath,list_of_outputs[i]+outputformat), "w+") as file:
 		file.write("character" + ", "  + "Positive"+", " + "Negative" + ", " + "Neutral" +"\n")
 		for k,v in SentimentResults:
 			if k != 'null':
@@ -166,7 +169,7 @@ for i in range(len(list_of_inputs)):
 
     
 # open output file for season stats
-with open(os.path.join(savepath,"character_sentiment_season.txt"), "w+") as file:
+with open(os.path.join(savepath,"character_sentiment_season" +outputformat), "w+") as file:
 	file.write("character" + ", "  + "Positive"+", " + "Negative" + ", " + "Neutral" +"\n")
 	for k,v in season_totals:
 		if k != 'null':

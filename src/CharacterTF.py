@@ -28,12 +28,13 @@ episode5 = "../GameofThrones/episode5.csv"
 episode6 = "../GameofThrones/episode6.csv" 
 episode7 = "../GameofThrones/episode7full.csv"
 
-#outputpath
+# output path
 savepath ="../output/Text/CharacterTF/"
 
 list_of_inputs = [episode1, episode2, episode3, episode4, episode5, episode6, episode7]
-list_of_outputs = ["character_count_E1.txt", "character_count_E2.txt", "character_count_E3.txt", "character_count_E4.txt", "character_count_E5.txt", "character_count_E6.txt", "character_count_E7.txt"]
-
+list_of_outputs = ["character_count_E1", "character_count_E2", "character_count_E3", "character_count_E4", "character_count_E5", "character_count_E6", "character_count_E7"]
+#output format
+outputformat = ".txt" #text file
 # characters we want
 character_collection = ["jaime", "cersei", "dany", "jon","sansa", "arya", "theon", "bran", "hound", "tyrion", "littlefinger", "melisandre", "bronn", "varys", "tormund", "gilly", "missandei", "davos", "sam"]
 
@@ -67,7 +68,7 @@ for i in range(len(list_of_inputs)):
     characters_totals_sorted = sorted(characters_totals.items(), key = lambda kv: kv[1])
 
     # open output file (for each episode)
-    with open(os.path.join(savepath,list_of_outputs[i]), "w+") as file:
+    with open(os.path.join(savepath,list_of_outputs[i]+outputformat), "w+") as file:
         for elem in characters_totals_sorted:
             if elem[0] in character_collection:
                 file.write(elem[0] + ' ' + str(elem[1]) + '\n')
@@ -88,7 +89,7 @@ for i in range(len(list_of_inputs)):
 season_totals = sorted(season_totals.items(), key = lambda kv: kv[1])
 
 # open output file (for final count)
-with open(os.path.join(savepath,"character_count_season.txt"), "w+") as file:
+with open(os.path.join(savepath,"character_count_season"+outputformat), "w+") as file:
     for elem in season_totals:
         if elem[0] in character_collection:
             file.write(elem[0] + ' ' + str(elem[1]) + '\n')
