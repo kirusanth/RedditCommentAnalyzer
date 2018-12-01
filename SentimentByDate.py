@@ -9,6 +9,7 @@ from datetime import datetime
 import sys
 import requests
 import re
+import os
 
 # create spark configuration
 conf = SparkConf()
@@ -40,6 +41,8 @@ path6 = "../GameofThrones/"+ episode5_csv
 path7 = "../GameofThrones/"+ episode6_csv
 path8 = "../GameofThrones/"+ episode7_csv
 path9 = "../GameofThrones/"+ episode7_2_csv
+savepath ="../output/Text/SentimentEpisode/"
+
 
 df1 = spark.read.format("csv").option("header", "true").load(path1)
 df2 = spark.read.format("csv").option("header", "true").load(path2)
@@ -64,10 +67,8 @@ rdd9 = df9.select("created_utc","body").rdd
 
 
 
-rddUnion = rdd1.union(rdd2).union(rdd3).union(rdd4).union(rdd5).union(rdd6).union(rdd7).union(rdd8).union(rdd9)
 
-
-
+#assing episode and sentiment based on the epoch time(created_utc)
 def getEpisodeSentiment(x):
 
 	if x[1] is not None:
@@ -107,31 +108,27 @@ def getsentimentpoint(x):
 		neu = text['neu']
 		pos = text['pos']
 		if(neg > neu and neg > pos):
-			# sentScore = {'neg':1,'neu':0,'pos':0}
 			text['neg'] = 1
 			text['neu'] = 0
 			text['pos'] = 0
 		elif (neu > neg and neu > pos):
-			# sentScore = {'neg':0,'neu':1,'pos':0}
 			text['neg'] = 1
 			text['neu'] = 1
 			text['pos'] = 0
 		elif (pos > neg and pos > neu):
-			# sentScore = {'neg':0,'neu':0,'pos':1}
 			text['neg'] = 0
 			text['neu'] = 0
 			text['pos'] = 1
 		else:
-			# sentScore = {'neg':0,'neu':0,'pos':0}
 			text['neg'] = 0
 			text['neu'] = 0
 			text['pos'] = 0
 		
 		if re.match(r"^\d+?$", str(x[0])) and float(x[0]) < currentTs:
-			d = datetime.fromtimestamp(float(x[0])).strftime('"%y-%b-%d"')
+			d = datetime.fromtimestamp(float(x[0])).strftime('"%y-%m-%d"')
 				
 		else:
-			d = datetime.fromtimestamp(0000000000).strftime('"%y-%b-%d"')	
+			d = datetime.fromtimestamp(0000000000).strftime('"%y-%m-%d"')	
 			
 
 		return (d, (text,1))
@@ -152,8 +149,7 @@ def sentiment_reducer(key1, key2):
 	return (sumScore,key1[1]+key2[1]) 
 
 
-# rddUnion = rdd1.uinon(rdd2).union(rdd3).union(rdd4).union(rdd5).union(rdd6).union(rdd7).union(rdd8).union(rdd9)
-
+# map the each episode.
 erdd1 = rdd1.map(getEpisodeSentiment)
 erdd2 = rdd2.map(getEpisodeSentiment)
 erdd3 = rdd3.map(getEpisodeSentiment)
@@ -165,20 +161,38 @@ erdd8 = rdd8.map(getEpisodeSentiment)
 erdd9 = rdd9.map(getEpisodeSentiment)
 
 
+# combined the all the rdd for episodes
+rddUnion = rdd1.union(rdd2).union(rdd3).union(rdd4).union(rdd5).union(rdd6).union(rdd7).union(rdd8).union(rdd9)
 
+
+# produce mapped result 
 sentimentPointRdd = rddUnion.map(getsentimentpoint)
 
+# combine the mapped episode rdds together
 erddUnion = erdd1.union(erdd2).union(erdd3).union(erdd4).union(erdd5).union(erdd6).union(erdd7).union(erdd8).union(erdd9)
 
+# produces reduced result 
 byEpisodeRdd = erddUnion.reduceByKey(sentiment_reducer)
 byDateRdd = sentimentPointRdd.reduceByKey(sentiment_reducer)
 
 
+# print result in sorted manner
+byDateresult = sorted(byDateRdd.collect(), key= lambda x : x[0])
 
-byDateresult = byDateRdd.collect()
-byEpisoderesult = byEpisodeRdd.collect()
+byEpisoderesult = sorted(byEpisodeRdd.collect(), key= lambda x : x[0])
 
-with open ("DateResults.txt","w+") as file:
+
+try:
+    # Create target Directory
+    os.mkdir(savepath)
+   
+except FileExistsError:
+	pass
+   
+
+
+
+with open (os.path.join(savepath,"DateResult.txt"),"w+") as file:
 	for k,v in byDateresult:
 		if k != 'None':
 			compound=v[0]["compound"]/v[1]
@@ -188,7 +202,7 @@ with open ("DateResults.txt","w+") as file:
 			file.write(str(k) + " " + str(pos)+" " + str(neg) + " " + str(neu) + " " +str(compound) +"\n")
 
 
-with open ("EpisodeResults.txt","w+") as file:
+with open (os.path.join(savepath,"EpisodeResults.txt"),"w+") as file:
 	for k,v in byEpisoderesult:
 		if k != 'None':
 			compound=v[0]["compound"]/v[1]
@@ -196,4 +210,6 @@ with open ("EpisodeResults.txt","w+") as file:
 			neg=v[0]["neg"]/v[1]
 			neu=v[0]["neu"]/v[1]
 			file.write(str(k) + " " + str(pos)+" " + str(neg) + " " + str(neu) + " " +str(compound) +"\n")
+
+
 
