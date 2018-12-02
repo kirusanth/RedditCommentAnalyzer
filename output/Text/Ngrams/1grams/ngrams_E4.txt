@@ -1,0 +1,20 @@
+ jon  1996
+ one  1796
+ also  1701
+ dany  1637
+The length of the comment is less for ngrams conversion  1506
+ mean  1454
+ bronn  1447
+ bran  1386
+ maybe  1362
+ could  1289
+ jaime  1273
+ why  1227
+ how  1212
+ arya  1186
+ agree  1148
+ sure  1139
+ good  1120
+ pretty  1119
+ still  1101
+ even  1077

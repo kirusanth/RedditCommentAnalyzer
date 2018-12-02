@@ -1,0 +1,20 @@
+ jon 13387
+ also 9632
+ one 9502
+ maybe 9071
+The length of the comment is less for ngrams conversion 8879
+ mean 8661
+ could 7683
+ why 7632
+ arya 7108
+ how 6968
+ agree 6844
+ dany 6743
+ even 6505
+ bran 6497
+ pretty 6449
+ still 6385
+ good 6287
+ sure 6205
+ see 6137
+ probably 5799
