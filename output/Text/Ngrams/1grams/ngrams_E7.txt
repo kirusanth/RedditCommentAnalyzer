@@ -1,0 +1,20 @@
+ jon  2252
+ maybe  1595
+ bran  1565
+ also  1561
+ one  1392
+ mean  1281
+The length of the comment is less for ngrams conversion  1228
+ could  1202
+ why  1193
+ cersei  1159
+ tyrion  1107
+ how  1097
+ still  1076
+ agree  1055
+ pretty  1042
+ probably  1030
+ love  1012
+ even  998
+ good  968
+ sure  967
