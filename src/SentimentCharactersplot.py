@@ -50,7 +50,7 @@ for episode_nr in range(len(list_of_inputs)):
         # sort the positive, negative and neutral dictionary by the values 
 		poskeys,posvalues = sortedkeysandvalues(positive)
 		negkeys,negvalues = sortedkeysandvalues(negative)
-		neukeys,negvalues = sortedkeysandvalues(neutral)
+		neukeys,neuvalues = sortedkeysandvalues(neutral)
 		# Define figure size
 		plot.figure(figsize=(15.0, 5.0))
 		#plot positive
@@ -82,7 +82,7 @@ for episode_nr in range(len(list_of_inputs)):
 		#plot neutral
 		plot.subplot(1, 3, 3)
 		ypos = np.arange(len(negvalues))
-		plot.bar(ypos, negvalues, color=sns.color_palette("husl",20), align = 'center', alpha = 0.7)
+		plot.bar(ypos, neuvalues, color=sns.color_palette("husl",20), align = 'center', alpha = 0.7)
 		plot.xticks(ypos, neukeys,rotation=80)
 		plot.subplots_adjust(bottom = 0.3)
 		plot.ylabel("Average Neutral Scores")
