@@ -35,7 +35,11 @@ for episode_nr in range(len(list_of_inputs)):
     plot.subplots_adjust(bottom = 0.3)
     plot.ylabel("Occurrences")
     plot.xlabel("Characters")
-    plot.title("Characters Vs Occurrences")
+    if episode_nr < 6 :
+        plot.title("Episode " +str(episode_nr + 1))
+    else: 
+        plot.title("Season")
+
   
     plot.savefig(os.path.join(outputpath,list_of_outputs[episode_nr]))
     episode_nr += 1

@@ -61,7 +61,12 @@ for episode_nr in range(len(list_of_inputs)):
 		plot.subplots_adjust(bottom = 0.3)
 		plot.ylabel("Average Positive Scores")
 		plot.xlabel("Characters")
-		plot.title("Characters Vs Average Positive Scores")
+		if episode_nr < 6 :
+			plot.title("Positive comments in Episode " +str(episode_nr + 1))
+		else:
+			plot.title("Overall Positive comments in Season")
+
+
 		#plot negative
 		plot.subplot(1, 3, 2)
 		ypos = np.arange(len(negvalues))
@@ -70,7 +75,10 @@ for episode_nr in range(len(list_of_inputs)):
 		plot.subplots_adjust(bottom = 0.3)
 		plot.ylabel("Average Negative Scores")
 		plot.xlabel("Characters")
-		plot.title("Characters Vs Average Negative Scores")
+		if episode_nr < 6 :
+			plot.title("Negative comments in Episode " +str(episode_nr + 1))
+		else:
+			plot.title("Overall Negative comments in Season")
 		#plot neutral
 		plot.subplot(1, 3, 3)
 		ypos = np.arange(len(negvalues))
@@ -79,7 +87,11 @@ for episode_nr in range(len(list_of_inputs)):
 		plot.subplots_adjust(bottom = 0.3)
 		plot.ylabel("Average Neutral Scores")
 		plot.xlabel("Characters")
-		plot.title("Characters Vs Average Neutral Scores")
+		if episode_nr < 6 :
+			plot.title("Netural comments in Episode " +str(episode_nr + 1))
+		else:
+			plot.title("Overall Neutral comments in Season")
+
 		#save the plot in png format
 		plot.savefig(os.path.join(outputpath,list_of_outputs[episode_nr]))
 		episode_nr += 1 # move to the next episode file
