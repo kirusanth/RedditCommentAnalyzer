@@ -5,11 +5,14 @@
 4. run following commands on docker:
 	hadoop fs -mkdir -p /user
 	hadoop fs -put GameofThrones /user
-5. go to src in the app to run sentimentCharacter.py file as following:
+5. type following command to download the required packages: ( make sure the set the flies to LF line endings (UNIX) that CRLF line endings(WINDOWS IN SUBLIME GO TO VIEW-->LINE ENDINGS-> UNIX )
+	bash start.sh
+5. go to src in the app to run the sparkprograms files as following:
 	spark-submit SentimentCharacters.py
-
-6. If you see the file rows in the terminal means you are ready to go
-
+6. In order to see the pictures, please type the following commands:
+	python filename.py (files end with plot at the end are created for visuals)
+7. If you go to the output folder, then to Text and then to the appropriate program folder to see the text results
+8. visuals can be seen through the outputfolder, then to the Image folder , then to the appropritate program
 
 
 ---------Working with Git ------------------

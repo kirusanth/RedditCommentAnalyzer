@@ -1,16 +1,16 @@
-
 from pyspark import SparkConf,SparkContext
 from pyspark.streaming import StreamingContext
 from pyspark.sql import Row,SQLContext, SparkSession
 from nltk.sentiment import SentimentIntensityAnalyzer
-vader_analyzer = SentimentIntensityAnalyzer()
 from datetime import datetime
-
+import nltk
 import sys
 import requests
 import re
 import os
-
+nltk.download('vader_lexicon')
+# set the analayzer
+vader_analyzer = SentimentIntensityAnalyzer()
 # create spark configuration
 conf = SparkConf()
 conf.setAppName("StentimentByDate")

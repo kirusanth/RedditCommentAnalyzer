@@ -42,7 +42,7 @@ list_of_outputs = ["character_sentiment_E1", "character_sentiment_E2", "characte
 outputformat = ".txt" #textfile
 
 #character can be identified without aliases references
-characters = ["cersei","theon", "bran", "hound", "melisandre", "bronn", "tormund","gilly","missandei"]
+characters = ["cersei","theon", "bran", "hound", "bronn", "tormund","gilly","missandei"]
 # Daenerys's aliases
 daenerys = ["daenerys","stormborn","dany","khaleesi" ,"mhysa","silver lady","dragonmother","dragon queen"]
 #Tyrion's aliases
